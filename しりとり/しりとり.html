@@ -35,35 +35,36 @@
                     // }else{
                     //     // "$order.innerHTML = order++;" error => order(const)상수 이기 때문에
                     //     $order.innerHTML = order + 1; 
-                    // }
+                    // } 아래와 같음
                     let order =  Number($order.innerHTML);
                     $order.innerHTML = (order++) % nOfPlayer + 1;
-
-                
+                    
                 }else { //제시어가 비어있지 않음
                     // 입력한 단어가 올바른지 구현
                     if(jesiWord[jesiWord.length - 1] == inputtedWord[0]) {
                         // 입력단어가 올바름
-                        alert("올바름");
+                        // alert("올바름");
                         jesiWord = inputtedWord;
-                        const order = Number($order.innerHTML);// (.innerHTML = 문자열) =(Number)=> 숫자로 변환
-                        if(order + 1 > nOfPlayer) {
-                            $order.innerHTML = 1;
-                        }else{
-                            // "$order.innerHTML = order++;" error => order(const)상수 이기 때문에
-                            $order.innerHTML = order + 1; 
-                        }
-                    
-                    $word.textContent = jesiWord;
+                        
+                        let order =  Number($order.innerHTML);
+                        $order.innerHTML = (order++) % nOfPlayer + 1;
+                        
+                        $word.textContent = jesiWord;
+                        
+                        $input.value = '';
+                        $input.focus();
                     }else{
-                        alert("올바르지 않음")
+                        //입력단어가 틀림
+                        alert("올바르지 않음");
+                        $input.value = '';
+                        $input.focus();
                     }
                 }
             }   
-        );
-        $input.addEventListener(
-            'input',
-            (event)=>{
+            );
+            $input.addEventListener(
+                'input',
+                (event)=>{
                 console.log('이벤트가 발생한 엘리먼트', event.target);
                 console.log('입력한 글자', event.target.value);
                 inputtedWord = event.target.value;
