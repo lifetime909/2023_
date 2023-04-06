@@ -16,8 +16,9 @@
         const $input = document.querySelector('input');
         const $button = document.querySelector('button');
         const $word = document.querySelector('#word'); //span태그 엘리먼트 선택
+        const $order = document.querySelector('#order');
         let jesiWord; //초기값 undefined
-        let inputtedWord;
+        let inputtedWord; //게임 참가자가 입력한 단어 저장
 
 
         $button.addEventListener(
@@ -25,11 +26,38 @@
             (event)=>{
                 // console.log('click the button');
                 if(!jesiWord){ // 최초 실행시 !undefined, 제시어가 비어있음
-                    
                     jesiWord = inputtedWord; // 입력한 단어를 제시어로 저장
                     $word.textContent = jesiWord; // 입력한 단어를 제시어로 저장한 후 화면에 표시한다.
-                }else { //제시어가 비어있지 않음
+                
+                    // const order = Number($order.innerHTML);// (.innerHTML = 문자열) =(Number)=> 숫자로 변환
+                    // if(order + 1 > nOfPlayer) {
+                    //     $order.innerHTML = 1;
+                    // }else{
+                    //     // "$order.innerHTML = order++;" error => order(const)상수 이기 때문에
+                    //     $order.innerHTML = order + 1; 
+                    // }
+                    let order =  Number($order.innerHTML);
+                    $order.innerHTML = (order++) % nOfPlayer + 1;
 
+                
+                }else { //제시어가 비어있지 않음
+                    // 입력한 단어가 올바른지 구현
+                    if(jesiWord[jesiWord.length - 1] == inputtedWord[0]) {
+                        // 입력단어가 올바름
+                        alert("올바름");
+                        jesiWord = inputtedWord;
+                        const order = Number($order.innerHTML);// (.innerHTML = 문자열) =(Number)=> 숫자로 변환
+                        if(order + 1 > nOfPlayer) {
+                            $order.innerHTML = 1;
+                        }else{
+                            // "$order.innerHTML = order++;" error => order(const)상수 이기 때문에
+                            $order.innerHTML = order + 1; 
+                        }
+                    
+                    $word.textContent = jesiWord;
+                    }else{
+                        alert("올바르지 않음")
+                    }
                 }
             }   
         );
@@ -38,7 +66,7 @@
             (event)=>{
                 console.log('이벤트가 발생한 엘리먼트', event.target);
                 console.log('입력한 글자', event.target.value);
-                inputtedWord
+                inputtedWord = event.target.value;
             }
         )
     </script> 
