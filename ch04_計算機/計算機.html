@@ -40,17 +40,13 @@
         <button id="multiply">*</button>
     </div>
     <script>
-        let nimOne = '';
+        let numOne = '';
         let operator = '';
         let numTwo = '';
         const $operator = document.querySelector("#operator");
         const $result = document.querySelector("#result");
 
-        document.querySelector("#num-0").addEventListener(
-            'click',
-            ()=>{}
-        )
-        document.querySelector("#num-1").addEventListener(
+        /* document.querySelector("#num-0").addEventListener(
             'click',
             ()=>{
                 if(operator){
@@ -61,38 +57,112 @@
                 $result.value += '0';
                 console.log(numOne, numTwo, operator);
             }
+        )
+        document.querySelector("#num-1").addEventListener(
+            'click',
+            ()=>{
+                if(operator){
+                    numTwo += '1';
+                }else{ //최초에는 operate가 ''; false처리
+                    numOne += '1';
+                }
+                $result.value += '1';
+                console.log(numOne, numTwo, operator);
+            }
             )
         document.querySelector("#num-2").addEventListener(
             'click',
-            ()=>{}
+            ()=>{
+                if(operator){
+                    numTwo += '2';
+                }else{ //최초에는 operate가 ''; false처리
+                    numOne += '2';
+                }
+                $result.value += '2';
+                console.log(numOne, numTwo, operator);
+            }
             )
         document.querySelector("#num-3").addEventListener(
             'click',
-            ()=>{}
+            ()=>{
+                if(operator){
+                    numTwo += '3';
+                }else{ //최초에는 operate가 ''; false처리
+                    numOne += '3';
+                }
+                $result.value += '3';
+                console.log(numOne, numTwo, operator);
+            }
             )
         document.querySelector("#num-4").addEventListener(
-                        'click',
-                        ()=>{}
+                'click',
+                ()=>{
+                    if(operator){
+                    numTwo += '4';
+                }else{ //최초에는 operate가 ''; false처리
+                    numOne += '4';
+                }
+                $result.value += '4';
+                console.log(numOne, numTwo, operator);
+                }
         )
         document.querySelector("#num-5").addEventListener(
             'click',
-            ()=>{}
+            ()=>{
+                if(operator){
+                    numTwo += '5';
+                }else{ //최초에는 operate가 ''; false처리
+                    numOne += '5';
+                }
+                $result.value += '5';
+                console.log(numOne, numTwo, operator);
+            }
             )
         document.querySelector("#num-6").addEventListener(
                 'click',
-                ()=>{}
-                )
+                ()=>{
+                    if(operator){
+                    numTwo += '6';
+                }else{ //최초에는 operate가 ''; false처리
+                    numOne += '6';
+                }
+                $result.value += '6';
+                console.log(numOne, numTwo, operator);
+                }
+            )
         document.querySelector("#num-7").addEventListener(
             'click',
-            ()=>{}
+            ()=>{if(operator){
+                    numTwo += '7';
+                }else{ //최초에는 operate가 ''; false처리
+                    numOne += '7';
+                }
+                $result.value += '7';
+                console.log(numOne, numTwo, operator);
+            }
             )
         document.querySelector("#num-8").addEventListener(
             'click',
-            ()=>{}
+            ()=>{if(operator){
+                    numTwo += '8';
+                }else{ //최초에는 operate가 ''; false처리
+                    numOne += '8';
+                }
+                $result.value += '8';
+                console.log(numOne, numTwo, operator);
+            }
             )
         document.querySelector("#num-9").addEventListener(
             'click',
-            ()=>{}
+            ()=>{
+                if(operator){
+                    numTwo += '9';
+                }else{ //최초에는 operate가 ''; false처리
+                    numOne += '9';
+                }
+                $result.value += '9';
+                console.log(numOne, numTwo, operator);
+            }
             )
         document.querySelector("#plus").addEventListener(
             'click',
@@ -105,7 +175,48 @@
         document.querySelector("#num-0").addEventListener(
             'click',
             ()=>{}
+        ) */
+        
+        const onclickNum = (numStr) => (event) => {
+            if(operator){
+                    numTwo += numStr;
+                }else{ //최초에는 operate가 ''; false처리
+                    numOne += numStr;
+                }
+                $result.value += numStr;
+        };
+        document.querySelector("#num-0").addEventListener(
+            'click', onclickNum('0')
         )
-                            </script>
+        document.querySelector("#num-1").addEventListener(
+            'click', onclickNum('1')
+        )
+        document.querySelector("#num-2").addEventListener(
+            'click', onclickNum('2')
+        )
+        document.querySelector("#num-3").addEventListener(     
+           'click', onclickNum('3')
+        )
+        document.querySelector("#num-4").addEventListener(
+            'click', onclickNum('4')
+        )
+        document.querySelector("#num-5").addEventListener(
+            'click', onclickNum('5')
+        )
+        document.querySelector("#num-6").addEventListener(
+            'click', onclickNum('6')
+        )
+        document.querySelector("#num-7").addEventListener(
+            'click', onclickNum('7')
+        )
+        document.querySelector("#num-8").addEventListener(
+            'click', onclickNum('8')
+        )
+        document.querySelector("#num-9").addEventListener(
+            'click', onclickNum('9')
+        )
+
+        
+        </script>
 </body>
 </html>
