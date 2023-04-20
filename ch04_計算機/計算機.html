@@ -1,267 +1,336 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        * {box-sizing : border-box}
-        #result { width: 180px; height: 50px; margin: 5px; text-align: right}
-        #operator { width: 50px; height: 50px; margin: 5px; text-align: center}
-        button { width: 50px; height: 50px; margin: 5px}
-    </style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {box-sizing: border-box;}
+    #result {width: 180px; height: 50px; margin: 5px; text-align: right}
+    #operator {width: 50px; height: 50px; margin: 5px; text-align: center}
+    button {width: 50px; height: 50px; margin: 5px;}
+  </style>
 </head>
 <body>
-    <input type="text" id="operator" readonly>
-    <input type="number" id="result" readonly>
+  <input type="text" readonly id="operator">
+  <input type="number" id="result" readonly>
 
-    <div class="row">
-        <button id="num-7">7</button>
-        <button id="num-8">8</button>
-        <button id="num-9">9</button>
-        <button id="plus">+</button>
-    </div>
+  <div class="row">
+    <button id="num-7">7</button>
+    <button id="num-8">8</button>
+    <button id="num-9">9</button>
+    <button id="plus">+</button>
+  </div>
+  <div class="row">
+    <button id="num-4">4</button>
+    <button id="num-5">5</button>
+    <button id="num-6">6</button>
+    <button id="minus">-</button>
+  </div>
+  <div class="row">
+    <button id="num-1">1</button>
+    <button id="num-2">2</button>
+    <button id="num-3">3</button>
+    <button id="divide">/</button>
+  </div>
+  <div class="row">
+    <button id="clear">C</button>
+    <button id="num-0">0</button>
+    <button id="calculate">=</button>
+    <button id="multiply">*</button>
+  </div>
+  
+  <script>
+    let numOne = '';
+    let operator = '';
+    let numTwo = ''
+    const $operator = document.querySelector("#operator");
+    const $result = document.querySelector("#result");
 
-    <div class="row">
-        <button id="num-4">4</button>
-        <button id="num-5">5</button>
-        <button id="num-6">6</button>
-        <button id="minus">-</button>
-    </div>
+/*     document.querySelector("#num-0").addEventListener(
+      'click',
+      ()=>{
+        if(operator){
+          numTwo +='0';
 
-    <div class="row">
-        <button id="num-1">1</button>
-        <button id="num-2">2</button>
-        <button id="num-3">3</button>
-        <button id="divide">/</button>
-    </div>
-
-    <div class="row">
-        <button id="Clear">C</button>
-        <button id="num-0">0</button>
-        <button id="Calculate">=</button>
-        <button id="multiply">*</button>
-    </div>
-
-    <!---------------------------------------------------------->
-    <script>
-        // 기본 출력 값 변수 생성
-        let numOne = '';
-        let operator = '';
-        let numTwo = '';
-
-        // operator와 result의 값 읽어 오기.
-        const $operator = document.querySelector("#operator");
-        const $result = document.querySelector("#result");
-
-        // 고차 함수사용 전 코드
-        /* document.querySelector("#num-0").addEventListener(
-            'click',
-            ()=>{
-                if(operator){
-                    numTwo += '0';
-                }else{ //최초에는 operate가 ''; false처리
-                    numOne += '0';
-                }
-                $result.value += '0';
-                console.log(numOne, numTwo, operator);
-            }
-        )
-        document.querySelector("#num-1").addEventListener(
-            'click',
-            ()=>{
-                if(operator){
-                    numTwo += '1';
-                }else{ //최초에는 operate가 ''; false처리
-                    numOne += '1';
-                }
-                $result.value += '1';
-                console.log(numOne, numTwo, operator);
-            }
-            )
-        document.querySelector("#num-2").addEventListener(
-            'click',
-            ()=>{
-                if(operator){
-                    numTwo += '2';
-                }else{ //최초에는 operate가 ''; false처리
-                    numOne += '2';
-                }
-                $result.value += '2';
-                console.log(numOne, numTwo, operator);
-            }
-            )
-        document.querySelector("#num-3").addEventListener(
-            'click',
-            ()=>{
-                if(operator){
-                    numTwo += '3';
-                }else{ //최초에는 operate가 ''; false처리
-                    numOne += '3';
-                }
-                $result.value += '3';
-                console.log(numOne, numTwo, operator);
-            }
-            )
-        document.querySelector("#num-4").addEventListener(
-                'click',
-                ()=>{
-                    if(operator){
-                    numTwo += '4';
-                }else{ //최초에는 operate가 ''; false처리
-                    numOne += '4';
-                }
-                $result.value += '4';
-                console.log(numOne, numTwo, operator);
-                }
-        )
-        document.querySelector("#num-5").addEventListener(
-            'click',
-            ()=>{
-                if(operator){
-                    numTwo += '5';
-                }else{ //최초에는 operate가 ''; false처리
-                    numOne += '5';
-                }
-                $result.value += '5';
-                console.log(numOne, numTwo, operator);
-            }
-            )
-        document.querySelector("#num-6").addEventListener(
-                'click',
-                ()=>{
-                    if(operator){
-                    numTwo += '6';
-                }else{ //최초에는 operate가 ''; false처리
-                    numOne += '6';
-                }
-                $result.value += '6';
-                console.log(numOne, numTwo, operator);
-                }
-            )
-        document.querySelector("#num-7").addEventListener(
-            'click',
-            ()=>{if(operator){
-                    numTwo += '7';
-                }else{ //최초에는 operate가 ''; false처리
-                    numOne += '7';
-                }
-                $result.value += '7';
-                console.log(numOne, numTwo, operator);
-            }
-            )
-        document.querySelector("#num-8").addEventListener(
-            'click',
-            ()=>{if(operator){
-                    numTwo += '8';
-                }else{ //최초에는 operate가 ''; false처리
-                    numOne += '8';
-                }
-                $result.value += '8';
-                console.log(numOne, numTwo, operator);
-            }
-            )
-        document.querySelector("#num-9").addEventListener(
-            'click',
-            ()=>{
-                if(operator){
-                    numTwo += '9';
-                }else{ //최초에는 operate가 ''; false처리
-                    numOne += '9';
-                }
-                $result.value += '9';
-                console.log(numOne, numTwo, operator);
-            }
-            )
-        document.querySelector("#plus").addEventListener(
-            'click',
-            ()=>{}
-        )
-        document.querySelector("#minus").addEventListener(
-            'click',
-            ()=>{}
-        )
-        document.querySelector("#num-0").addEventListener(
-            'click',
-            ()=>{}
-        ) */
-        
-        // 고차 함수로 반복되는 함수를 이밴트로 생성
-        const onClickNum = (numStr) => (event) => {
-            if(operator){
-                if(!numTwo) {
-                    $result.value = '';
-                }
-                numTwo += numStr;
-                $result.value += numStr;
-            }else{ //최초에는 operate가 ''; false처리
-            numOne += numStr;
-            }
-            $result.value += numStr;
-        };
-
-        const cunClickNum = (event)
-
-
-        const onClickOperator = (op) => () => {
-            if (numOne) {
-                operator = op;
-                $operator.value = op;
-            } else {
-                alert("숫자를 먼저 입력하세요.")
-            }
+        }else{   // 최초에는 operator가 '': false처리
+          numOne +='0';
         }
-        // 위에 만들어진 고차함수를 불러와 축약
-        document.querySelector("#num-0").addEventListener(
-            'click', onClickNum('0')
-        );
-        document.querySelector("#num-1").addEventListener(
-            'click', onClickNum('1')
-        );
-        document.querySelector("#num-2").addEventListener(
-            'click', onClickNum('2')
-        );
-        document.querySelector("#num-3").addEventListener(     
-           'click', onClickNum('3')
-        );
-        document.querySelector("#num-4").addEventListener(
-            'click', onClickNum('4')
-        );
-        document.querySelector("#num-5").addEventListener(
-            'click', onClickNum('5')
-        );
-        document.querySelector("#num-6").addEventListener(
-            'click', onClickNum('6')
-        );
-        document.querySelector("#num-7").addEventListener(
-            'click', onClickNum('7')
-        );
-        document.querySelector("#num-8").addEventListener(
-            'click', onClickNum('8')
-        );
-        document.querySelector("#num-9").addEventListener(
-            'click', onClickNum('9')
-        );
-        document.querySelector("#plus").addEventListener(
-            'click', onClickOperator('+')
-        );
-        document.querySelector("#minus").addEventListener(
-            'click', onClickOperator('-')
-        );
-        document.querySelector("#divide").addEventListener(
-            'click', onClickOperator('/')
-        );
-        document.querySelector("#multiply").addEventListener(
-            'click', onClickOperator('*')
-        );
-        document.querySelector("#clear").addEventListener(
-            'click', () => {}
-        );
-        document.querySelector("#num-9").addEventListener(
-            'click', () => {}
-        );
+        $result.value +='0';
+        //console.log(numOne, numTwo, operator);
+      }
+    );
+    document.querySelector("#num-1").addEventListener(
+      'click',
+      ()=>{
+        if(operator){
+          numTwo +='1';
 
-        </script>
+        }else{   // 최초에는 operator가 '': false처리
+          numOne +='1';
+        }
+        $result.value +='1';
+      }
+    );
+    document.querySelector("#num-2").addEventListener(
+      'click',
+      ()=>{
+        if(operator){
+          numTwo +='2';
+
+        }else{   // 최초에는 operator가 '': false처리
+          numOne +='2';
+        }
+        $result.value +='2';
+      }
+    );
+    document.querySelector("#num-3").addEventListener(
+      'click',
+      ()=>{
+        if(operator){
+          numTwo +='3';
+
+        }else{   // 최초에는 operator가 '': false처리
+          numOne +='3';
+        }
+        $result.value +='3';
+      }
+    );
+    document.querySelector("#num-4").addEventListener(
+      'click',
+      ()=>{
+        if(operator){
+          numTwo +='4';
+
+        }else{   // 최초에는 operator가 '': false처리
+          numOne +='4';
+        }
+        $result.value +='4';
+      }
+    );
+    document.querySelector("#num-5").addEventListener(
+      'click',
+      ()=>{
+        if(operator){
+          numTwo +='5';
+
+        }else{   // 최초에는 operator가 '': false처리
+          numOne +='5';
+        }
+        $result.value +='5';
+      }
+    );
+    document.querySelector("#num-6").addEventListener(
+      'click',
+      ()=>{
+        if(operator){
+          numTwo +='6';
+
+        }else{   // 최초에는 operator가 '': false처리
+          numOne +='6';
+        }
+        $result.value +='6';
+      }
+    );
+    document.querySelector("#num-7").addEventListener(
+      'click',
+      ()=>{
+        if(operator){
+          numTwo +='7';
+
+        }else{   // 최초에는 operator가 '': false처리
+          numOne +='7';
+        }
+        $result.value +='7';
+      }
+    );
+    document.querySelector("#num-8").addEventListener(
+      'click',
+      ()=>{
+        if(operator){
+          numTwo +='8';
+
+        }else{   // 최초에는 operator가 '': false처리
+          numOne +='8';
+        }
+        $result.value +='8';
+      }
+    );
+    document.querySelector("#num-9").addEventListener(
+      'click',
+      ()=>{
+        if(operator){
+          numTwo +='9';
+
+        }else{   // 최초에는 operator가 '': false처리
+          numOne +='9';
+        }
+        $result.value +='9';
+      }
+    );
+   */
+
+/*    const onClickNum = (numStr)=>(event)=>{
+    if(operator){
+      if(!numTwo){  // nest if
+        $result.value = '';
+      }
+      numTwo +=numStr;
+    }else{   
+      numOne +=numStr;
+    }
+    $result.value +=numStr;
+   }; */
+
+// R1 적용
+/*    const onClickNum = (numStr)=>(event)=>{
+    if(operator){
+      if(!numTwo){  // nest if
+        $result.value = '';
+      }
+      numTwo +=numStr;
+      $result.value +=numStr; 
+    }else{   
+      numOne +=numStr;
+      $result.value +=numStr; 
+    }
+    //$result.value +=numStr;  // 공통 절차
+   }; */
+
+   //R2적용
+/*    const onClickNum = (numStr)=>(event)=>{
+    if(!operator){   // 짧은 절차
+      numOne +=numStr;
+      $result.value +=numStr; 
+    }else{
+      if(!numTwo){  // nest if
+        $result.value = '';
+      }
+      numTwo +=numStr;
+      $result.value +=numStr; 
+    }
+    //$result.value +=numStr;  // 공통 절차
+   }; */
+
+   //R3,  R4 적용
+   const onClickNum = (numStr)=>(event)=>{
+    if(!operator){   // 짧은 절차
+      numOne +=numStr;
+      $result.value +=numStr; 
+      return;   // 실행 종료
+    }
+    //R4 적용
+    if(!numTwo){  
+      $result.value = '';
+    }
+    numTwo +=numStr;
+    $result.value +=numStr; 
+   };
+   
+   document.querySelector("#num-0").addEventListener(
+      'click',onClickNum('0')
+   );
+   document.querySelector("#num-1").addEventListener(
+      'click',onClickNum('1')
+   );
+   document.querySelector("#num-2").addEventListener(
+      'click',onClickNum('2')
+   );
+   document.querySelector("#num-3").addEventListener(
+      'click',onClickNum('3')
+   );
+   document.querySelector("#num-4").addEventListener(
+      'click',onClickNum('4')
+   );
+   document.querySelector("#num-5").addEventListener(
+      'click',onClickNum('5')
+   );
+   document.querySelector("#num-6").addEventListener(
+      'click',onClickNum('6')
+   );
+   document.querySelector("#num-7").addEventListener(
+      'click',onClickNum('7')
+   );
+   document.querySelector("#num-8").addEventListener(
+      'click',onClickNum('8')
+   );
+   document.querySelector("#num-9").addEventListener(
+      'click',onClickNum('9')
+   );
+
+   const onClickOperator = (op) => () =>{
+    if(numOne){
+      operator = op;
+      $operator.value = op;
+    }else{
+      alert('숫자를 먼저 입력하세요');
+    }
+   };
+
+/*    const onClickOper = (event) =>{
+    if(numOne){
+      operator = event.target.textContent;
+      $operator.value = operator;
+    }else{
+      alert('숫자를 먼저 입력하세요');
+    }
+   }; */
+
+   // 고차함수 없는 버전 작성해보기
+    
+    document.querySelector("#plus").addEventListener(
+      'click',
+      onClickOperator('+')
+    );
+    document.querySelector("#minus").addEventListener(
+      'click',
+      onClickOperator('-')
+    );
+    document.querySelector("#divide").addEventListener(
+      'click',
+      onClickOperator('/')
+    );
+    document.querySelector("#multiply").addEventListener(
+      'click',
+      onClickOperator('*')
+    );
+
+    document.querySelector("#calculate").addEventListener(
+      'click',
+      (event)=>{
+        if(numTwo){
+          switch(operator){
+            case '+': // operator === '+'
+              $result.value = Number(numOne)+parseInt(numTwo);
+              break;
+            case '-': 
+              $result.value = numOne-numTwo;
+              break;  
+            case '*': 
+              $result.value = numOne*numTwo;
+              break;    
+            case '/': 
+              $result.value = numOne/numTwo;
+              break;
+            default: break;
+          }
+        }else{
+          alert('숫자를 입력하시오.');
+        }
+      }
+    );
+    document.querySelector("#clear").addEventListener(
+      'click',
+      (ev)=>{
+        numOne = numTw0 = operator = '';
+        $result.value = $operator.value = '';
+      }
+    );
+
+  </script>
+
+
+
 </body>
 </html>
