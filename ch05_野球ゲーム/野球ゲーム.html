@@ -73,6 +73,7 @@
             if(nOfTriesArr.length > 10){
                 const msg = document.createTextNode(`패배! 정답 : ${answer.join(' ')}`);
                 $logs.appendChild(msg);
+                // $logs.textContent = `패배! 정답 : ${answer.join(' ')}`;
                 return;
             }
             nOfTriesArr.push(value);
